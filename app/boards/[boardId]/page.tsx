@@ -7,6 +7,7 @@ export default function BoardPage({
 	params: { boardId: string };
 	searchParams: { [key: string]: string | string[] | undefined };
 }) {
+	// throw new Error("Invalid");
 	return (
 		<div>
 			BoardPage
