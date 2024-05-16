@@ -5,7 +5,11 @@ import { FormEvent } from "react";
 import { Button } from "~/src/components/form/Bouton";
 import { Input } from "~/src/components/form/Input";
 
-export default function BoardForm() {
+type PropositionFormProps = {
+	boardID: number;
+};
+
+export default function PropositionForm({ boardID }: PropositionFormProps) {
 	const router = useRouter();
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -13,7 +17,7 @@ export default function BoardForm() {
 		const formData = new FormData(event.currentTarget);
 		const title = String(formData.get("title"));
 
-		fetch("/api/boards", {
+		fetch(`/api/boards/${boardID}/propositions`, {
 			method: "POST",
 			body: JSON.stringify({
 				title,
@@ -30,7 +34,7 @@ export default function BoardForm() {
 	return (
 		<form onSubmit={handleSubmit} className="flex flex-col gap-4">
 			<Input label="Title" name="title" />
-			<Button type="submit">Create board</Button>
+			<Button type="submit">Create Proposition</Button>
 		</form>
 	);
 }
